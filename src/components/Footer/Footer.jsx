@@ -12,7 +12,6 @@ const Footer = () => {
         </Typography.Title>
         <Space>
             <Link to='/home'>Home</Link>
-            <Link to="/cryptocurrencies">Cryptocurrencies</Link>
             <Link to="/exchanges">Exchanges</Link>
             <Link to="/news">News</Link>
         </Space>
