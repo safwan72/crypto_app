@@ -1,9 +1,11 @@
 import { Col, Row, Typography } from "antd";
 import React from "react";
 import { Line } from "react-chartjs-2";
+// import { CategoryScale, Chart,LinearScale,PointElement } from "chart.js";
+import Chart from 'chart.js/auto';
+
 
 const { Title } = Typography;
-
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 
 const coinPrice=[];
@@ -25,17 +27,17 @@ const data={
     }
   ]
 }
-const options={
-  scales:{
-    yAxes:[
+const options = {
+  scales: {
+    yAxes: [
       {
-        ticks:{
-          beginAtZero:true
-        }
-      }
-    ]
-  }
-}
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+};
   return (
     <>
       <Row className="chart-header">

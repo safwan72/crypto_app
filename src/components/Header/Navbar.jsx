@@ -10,6 +10,32 @@ import {
 } from "@ant-design/icons";
 import icon from "../../images/cryptocurrency.png";
 const Navbar = () => {
+
+const [activeMenu, setactiveMenu] = React.useState(true);
+const [screenSize, setscreenSize] = React.useState(undefined);
+
+
+React.useEffect(() => {
+  
+const handleResize=()=>setscreenSize(window.innerWidth);
+window.addEventListener('resize',handleResize);
+handleResize();
+
+return ()=>window.removeEventListener('resize',handleResize);
+}, [])
+
+
+React.useEffect(() => {
+  
+if(screenSize<800){
+  setactiveMenu(false);
+}else{
+  setactiveMenu(true)
+}
+
+  }, [screenSize])
+
+
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -19,25 +45,27 @@ const Navbar = () => {
         </Typography.Title>
 
         {/* Used in Mobile Devices */}
-        {/* <Button className='menu-control-container'>
-
-            </Button> */}
+        <Button className='menu-control-container' onClick={()=>setactiveMenu(!activeMenu)}>
+        <MenuOutlined />
+            </Button>
       </div>
-
+{activeMenu && (
       <Menu theme="dark">
-        <Menu.Item icon={<HomeOutlined />}>
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item icon={<FundOutlined />}>
-          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
-        </Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined />}>
-          <Link to="/exchanges">Exchanges</Link>
-        </Menu.Item>
-        <Menu.Item icon={<BulbOutlined />}>
-          <Link to="/news">News</Link>
-        </Menu.Item>
-      </Menu>
+      <Menu.Item icon={<HomeOutlined />}>
+        <Link to="/">Home</Link>
+      </Menu.Item>
+      <Menu.Item icon={<FundOutlined />}>
+        <Link to="/cryptocurrencies">Cryptocurrencies</Link>
+      </Menu.Item>
+      <Menu.Item icon={<MoneyCollectOutlined />}>
+        <Link to="/exchanges">Exchanges</Link>
+      </Menu.Item>
+      <Menu.Item icon={<BulbOutlined />}>
+        <Link to="/news">News</Link>
+      </Menu.Item>
+    </Menu>
+
+)}
     </div>
   );
 };
