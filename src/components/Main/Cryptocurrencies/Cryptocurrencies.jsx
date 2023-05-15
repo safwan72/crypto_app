@@ -3,6 +3,7 @@ import millify from 'millify'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGetCryptosQuery } from '../../../services/cryptoApi'
+import Loader from '../../utils/Loader'
 
 
 
@@ -12,6 +13,8 @@ const count=simplified?10:100;
 const {data:cryptoslist,isfetching}=useGetCryptosQuery(count);
 const [cryptos, setcryptos] = React.useState([]);
 const [searchterms, setsearchterms] = React.useState('');
+
+
 React.useEffect(()=>{
 setcryptos(cryptoslist?.data?.coins);
 
@@ -20,7 +23,9 @@ setcryptos(filteredData);
 
 
 },[cryptoslist,searchterms])
-console.log(cryptoslist)
+console.log(cryptoslist);
+if(isfetching) return <Loader/>
+
   return (
     <>
     {!simplified &&(
