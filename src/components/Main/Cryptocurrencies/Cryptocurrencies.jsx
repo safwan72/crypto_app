@@ -20,8 +20,7 @@ setcryptos(filteredData);
 
 
 },[cryptoslist,searchterms])
-console.log(cryptos)
-
+console.log(cryptoslist)
   return (
     <>
     {!simplified &&(
@@ -32,8 +31,8 @@ console.log(cryptos)
     )}
     <Row gutter={[32,32]} className='crypto-card-container'>
       {cryptos?.map((crypto)=>(
-        <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto?.id}>
-       <Link to={`/crypto/${crypto?.id}`}>
+        <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto?.uuid}>
+       <Link to={`/crypto/${crypto?.uuid}`}>
        <Card title={`${crypto?.rank} . ${crypto?.name}`}
        extra={<img className='crypto-image' src={crypto?.iconUrl} alt={crypto?.name}/>}
        hoverable
